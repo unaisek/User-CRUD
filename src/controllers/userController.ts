@@ -13,9 +13,14 @@ export default class UserController implements IUserController {
     try {
 
       const { name, email, address, mobile , gender } = req.body;
+      const existingUser = await this._userService.findUserByEmail(email);
+      if(existingUser){
+        res.status(400).json({
+          data:existingUser,
+          message: "User already registerd"
+        })
+      }
       const data = { name, email, address, mobile, gender };
-      
-
       const userData = await this._userService.createUser(data);
       if(userData){
         res.status(200).json({
@@ -46,7 +51,6 @@ export default class UserController implements IUserController {
       const { name, email, address, mobile, gender } = req.body;
       const userData = { name, email, address, mobile, gender };
       const data  = await this._userService.updateUser(userId, userData);
-      console.log(data);
       
       res.status(200).json({
         data
