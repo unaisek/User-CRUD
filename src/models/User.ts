@@ -5,7 +5,7 @@ export interface IUser extends Document {
   email ?: string,
   address ?: string,
   mobile ?:string,
-  gender ?: number,
+  gender ?: string,
   is_blocked?: boolean,
   createdAt?: Date,
   updatedAt?: Date
@@ -27,6 +27,10 @@ const userSchema = new Schema<IUser>(
     },
     mobile : {
       type :String,
+      required: true
+    },
+    gender: {
+      type: String,
       required: true
     },
     is_blocked : {

@@ -17,4 +17,22 @@ export default class UserService implements IUserService {
       throw error
     }
   }
+
+  async getAllUsers(): Promise<IUser[]> {
+    try {
+      return await this._userRepository.getAllUsers()      
+    } catch (error) {
+      throw error
+    }
+  }
+
+  async updateUser(userId: string, userData:Partial<IUser>): Promise<IUser | null> {
+    try {
+
+      return await this._userRepository.updateUser(userId, userData);
+      
+    } catch (error) {
+      throw error
+    }
+  }
 } 
