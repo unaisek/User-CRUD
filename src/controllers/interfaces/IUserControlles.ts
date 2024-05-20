@@ -1,8 +1,8 @@
 import { IUser } from "../../models/User";
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 
 export interface IUserController {
-  createUser(req: Request, res: Response): void;
-  getAllUsers(req: Request, res: Response): void;
-  updateUser(req:Request, res:Response): void;
+  createUser(req: Request, res: Response, next: NextFunction): void;
+  getAllUsers(req: Request, res: Response, next: NextFunction): void;
+  updateUser(req: Request, res: Response, next: NextFunction): void;
 }
